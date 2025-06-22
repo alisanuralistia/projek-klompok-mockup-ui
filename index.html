@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="witdh=device-witdh, intial-scale=1.0">
+        <tittle>Toko Jersey Timnas</tittle>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f8f8f8; }
+            header {background: #d50000; color: white; padding: 1rem; text-align: center; }
+            main { padding: 1rem; display: flex; flex-direction: column; align-items: center; }
+            .product { background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); width: 300px; text-align: center; }
+            .product img { width: 100%; border-radius: 8px; }
+            .product h2 {font-size: 1.2rem; margin: 0.5rem 0; }
+            .product p {margin: 0.5rem 0; }
+            .button {background: #d50000; color: white; border: none; padding: 0.5rem 1rem; cursor: pointer; border-radius: 4px; }
+            .button:hover { background: #b71c1c; }
+            footer { margin-top: 2rem; text-align: center; padding: 1rem; color: #777; }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Toko Jersey Timnas Indonesia</h1>
+        </header>
+
+        <main>
+            <div class="login">
+                <h2>Login</h2>
+                <input type="text" id="username" placeholder="Username">
+                <input type="password" id="password" placeholder="Password">
+                <button class="button" onclick="login()">Login</button>
+            </div>
+
+            <div class="product">
+                <img src="foto.jpg" alt="Jersey Timnas 2025" />
+                <h2>Indonesia 2025 Home Jersey</h2>
+                <p>Rp 450.000</p>
+                <button class="button" onclick="addToCart()">Tambah ke Keranjang</button>
+            </div>
+
+            <div class="checkout">
+                <h2>Checkout</h2>
+                <p>Total: Rp <span id="total">0</span></p>
+                <input type="text" id="payment" placeholder="Metode Pembayaran">
+                <button class="button" onclick="checkout()">Bayar Sekarang</button>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Toko Jersey Timnas</p>
+        </footer>
+
+        <script>
+            let loggedIn = false;
+            let cartTotal = 0;
+
+            function login() {
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                if (username == "user" && password === "1234") {
+                    loggedIn = true;
+                    alert("Login berhasil!");
+                } else {
+                    alert("Username atau password salah.");
+                }
+            }
+
+            function addToCart() {
+                if (!loggedIn) {
+                    alert("Silakan login terlebih dahulu.");
+                    return;
+                }
+                cartTotal += 450000;
+                document.getElementById("total").innerText = cartTotal;
+                alert('Produk berhasil ditambahkan ke keranjang!');
+            }
+
+            function checkout() {
+                const paymentMethod = document.getElementById('payment').value;
+                if (cartTotal === 0) {
+                    alert("Keranjang belanja kosong.");
+                } else if (paymentMethod === "") {
+                    alert("Silakan isi metode pembayaran.");
+                } else {
+                    alert("Pembayaran berhasil menggunakan " + paymentMethod + ".Terima Kasih!");
+                    cartTotal = 0;
+                    document.getElementById("total").innerText = cartTotal;
+                }
+            }
+        </script>
+    </body>
+</html>
